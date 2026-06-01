@@ -1,0 +1,113 @@
+<!-- ============================================================
+     BEYOND TECHNOLOGY SECTION
+     WHERE TO PASTE:
+     1. Add the <section> block below BEFORE the <footer> tag
+        and AFTER the last <hr class="divider"> in your HTML.
+     2. Add the CSS inside your existing <style> tag
+        (paste it just before the closing </style> tag).
+     ============================================================ -->
+
+
+<!-- ── STEP 1: Paste this CSS inside your <style> tag ── -->
+<style>
+/* Beyond Technology */
+#beyond {
+  padding: 100px 5vw;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.beyond-inner {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.beyond-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.beyond-card {
+  background: #ffffff;
+  border: 1px solid #e8e4df;
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.beyond-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.07);
+}
+
+.beyond-card-icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.beyond-card-title {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+}
+
+.beyond-card-desc {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.65;
+}
+</style>
+
+
+<!-- ── STEP 2: Paste this block before <footer> ── -->
+
+<hr class="divider">
+
+<section id="beyond">
+  <div class="beyond-inner">
+    <div>
+      <p class="section-label">Beyond Tech</p>
+    </div>
+    <div>
+      <h2 class="section-title">Outside the screen</h2>
+      <div class="beyond-grid">
+
+        <!-- Card 1 — edit emoji, title & description -->
+        <div class="beyond-card">
+          <span class="beyond-card-icon">📸</span>
+          <p class="beyond-card-title">Photography</p>
+          <p class="beyond-card-desc">A line or two about this interest — what draws you to it, or a detail that makes it personal.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="beyond-card">
+          <span class="beyond-card-icon">📚</span>
+          <p class="beyond-card-title">Reading</p>
+          <p class="beyond-card-desc">What you read, a favourite genre, or a book that changed how you think.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="beyond-card">
+          <span class="beyond-card-icon">🏕️</span>
+          <p class="beyond-card-title">Travel</p>
+          <p class="beyond-card-desc">Where you've been, where you want to go, or what travel means to you.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="beyond-card">
+          <span class="beyond-card-icon">🎵</span>
+          <p class="beyond-card-title">Music</p>
+          <p class="beyond-card-desc">What you listen to, play, or how music fits into your day.</p>
+        </div>
+
+        <!-- Add more cards by copying a block above -->
+
+      </div>
+    </div>
+  </div>
+</section>

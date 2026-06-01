@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --accent: #1a1a1a;
+    --muted: #888;
+    --border: #e8e4df;
+    --bg: #faf9f7;
+    --card: #ffffff;
+    --text: #1a1a1a;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: rgba(250,249,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    padding: 0 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+  }
+
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--text); }
+
+  section { padding: 100px 5vw; max-width: 1100px; margin: 0 auto; }
+
+  /* HERO */
+  #hero {
+    padding-top: 160px;
+    padding-bottom: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(42px, 6vw, 72px);
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 24px;
+  }
+
+  .hero-name em {
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .hero-bio {
+    font-size: 17px;
+    color: #555;
+    line-height: 1.75;
+    max-width: 400px;
+    margin-bottom: 40px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border: 1.5px solid var(--text);
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text);
+    letter-spacing: 0.02em;
+    transition: all 0.2s;
+  }
+
+  .btn:hover {
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  .btn-ghost {
+    border-color: var(--border);
+    color: var(--muted);
+    margin-left: 12px;
+  }
+
+  .btn-ghost:hover {
+    background: transparent;
+    border-color: var(--muted);
+    color: var(--text);
+  }
+
+  .hero-image {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--border);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-image-placeholder {
+    font-size: 14px;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .hero-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #f0ece5 0%, #e8e2d8 100%);
+  }
+
+  .placeholder-icon {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .placeholder-icon svg {
+    width: 48px;
+    height: 48px;
+    opacity: 0.3;
+    margin-bottom: 12px;
+  }
+
+  .placeholder-label {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* DIVIDER */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ABOUT */
+  #about {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding-top: 6px;
+  }
+
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+
+  .about-text {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.85;
+    margin-bottom: 16px;
+  }
+
+  /* PROJECTS */
+  #projects {}
+
+  .projects-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 48px;
+  }
+
+  .projects-header .section-title { margin-bottom: 0; }
+
+  .view-all {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .view-all:hover {
+    color: var(--text);
+    border-color: var(--text);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+  }
+
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.08);
+  }
+
+  .project-image {
+    width: 100%;
+    aspect-ratio: 16/10;
+    background: #f0ece5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .project-image-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 48px;
+    color: #d8d2c8;
+    font-style: italic;
+  }
+
+  .project-body {
+    padding: 20px 24px 24px;
+  }
+
+  .project-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 10px;
+  }
+
+  .project-title {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    line-height: 1.3;
+  }
+
+  .project-desc {
+    font-size: 14px;
+    color: #777;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  .project-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1px;
+    transition: border-color 0.2s;
+  }
+
+  .project-link:hover { border-color: var(--text); }
+
+  /* SKILLS */
+  #skills {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .skill-group-title {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 14px;
+  }
+
+  .skill-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .skill-list li {
+    font-size: 15px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .skill-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #ccc;
+    flex-shrink: 0;
+  }
+
+
+   /* itnerests */
+  #beyond {
+  padding: 100px 5vw;
+  max-width: 1100px;
+  margin: 0 auto;
+  }
+
+  .beyond-inner {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
+  }
+
+  .beyond-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  }
+
+  .beyond-card {
+  background: #ffffff;
+  border: 1px solid #e8e4df;
+  border-radius: 12px;
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  .beyond-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 32px rgba(0,0,0,0.07);
+  }
+
+  .beyond-card-icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+  display: block;
+  }
+
+  .beyond-card-title {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #1a1a1a;
+  } 
+
+  .beyond-card-desc {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.65;
+  }
+
+  /* CONTACT */
+  #contact {
+    text-align: center;
+    padding: 100px 5vw 120px;
+  }
+
+  .contact-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .contact-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(36px, 5vw, 60px);
+    line-height: 1.15;
+    letter-spacing: -1px;
+    margin-bottom: 24px;
+  }
+
+  .contact-title em { font-style: italic; color: var(--muted); }
+
+  .contact-sub {
+    font-size: 16px;
+    color: #777;
+    max-width: 440px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 28px 5vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+  }
+
+  .footer-copy {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--text); }
+
+  @media (max-width: 700px) {
+    #hero, #about, #skills {
+      grid-template-columns: 1fr;
+    }
+    .hero-image { aspect-ratio: 3/2; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 12px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">Astitva Kapre</a>
+  <ul class="nav-links">
+    <li><a href="#beyond">Interests</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <p class="hero-eyebrow">Portfolio — 2025</p>
+    <h1 class="hero-name">Hi! I'm Astitva <br><em>Student Developer & Maker</em></h1>
+    <p class="hero-bio">I enjoy learning by building—whether it's developing software, programming microcontrollers, or creating systems that solve everyday problems.</p>
+    <div>
+      <a href="#contact" class="btn">Get in touch</a>
+      <a href="#projects" class="btn btn-ghost">View work</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <div class="placeholder-icon">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="18" r="8" stroke="#999" stroke-width="2"/>
+        <path d="M8 42c0-8.837 7.163-16 16-16s16 7.163 16 16" stroke="#999" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <p class="placeholder-label">Your photo here</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div>
+    <p class="section-label">About</p>
+  </div>
+  <div>
+    <h2 class="section-title">About me</h2>
+    <p class="about-text">I'm a Grade 12 student who enjoys learning by building. Whether it's developing software, creating IoT systems, or designing 3D models, I love combining creativity and technology to solve problems and bring ideas to life.</p>
+    <p class="about-text">Check out some of my work and projects below!</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="projects-header">
+    <h2 class="section-title">Selected work</h2>
+    <a href="#" class="view-all">View all →</a>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-image">
+        <span class="project-image-num">01</span>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Category · Year</span>
+        <h3 class="project-title">Cloud-Controlled Minecraft Server Activation</h3>
+        <p class="project-desc">Developed an ESP32-based Wake-on-LAN system that enabled group members to remotely power on a Minecraft server hosted in Visakhapatnam from anywhere in the world. The system used Vercel for command handling, ngrok for secure connectivity, and Discord integration for user access.</p>
+        <a href="#" class="project-link">View project →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-image">
+        <span class="project-image-num">02</span>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Category · Year</span>
+        <h3 class="project-title">ESP32 Hand Gesture PC Controller</h3>
+        <p class="project-desc">Designed and developed a gesture-controlled interface that allows users to operate a computer without a mouse. Using an ESP32-CAM and computer vision algorithms, the system recognizes specific hand gestures and translates them into real-time cursor movement, clicks, and scrolling actions. This project explored the intersection of embedded systems, artificial intelligence, and human-computer interaction while demonstrating potential applications in accessibility and touch-free computing.</p>
+        <a href="#" class="project-link">View project →</a>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-image">
+        <span class="project-image-num">03</span>
+      </div>
+      <div class="project-body">
+        <span class="project-tag">Category · Year</span>
+        <h3 class="project-title">Smart Note Digitization System</h3>
+        <p class="project-desc">Designed and developed a note digitization system that streamlines the process of organizing handwritten study materials. Users can upload photos of their notes from a mobile phone to a website hosted on a local network, where they are automatically categorized by subject and date. The system generates placeholders for missing submissions and compiles all uploaded notes into subject-wise PDF documents. By combining web technologies, automation, and document processing, the project simplifies note management and creates a structured digital archive of academic work.</p>
+        <a href="#" class="project-link">View project →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div>
+    <p class="section-label">Skills</p>
+  </div>
+  <div>
+    <h2 class="section-title">My Skillset</h2>
+    <div class="skills-grid">
+      <div>
+        <p class="skill-group-title">Core</p>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>Embedded Systems & IoT</li>
+          <li><span class="skill-dot"></span>Automation & Networking</li>
+          <li><span class="skill-dot"></span>3D Design & Prototyping</li>
+        </ul>
+      </div>
+      <div>
+        <p class="skill-group-title">Tools & Tech</p>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>ESP32 & Arduino</li>
+          <li><span class="skill-dot"></span>Git & GitHub</li>
+          <li><span class="skill-dot"></span>Blender</li>
+        </ul>
+      </div>
+      <div>
+        <p class="skill-group-title">Soft Skills</p>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>Leadership</li>
+          <li><span class="skill-dot"></span>Communication</li>
+          <li><span class="skill-dot"></span>Problem solving</li>
+        </ul>
+      </div>
+      <div>
+        <p class="skill-group-title">Languages</p>
+        <ul class="skill-list">
+          <li><span class="skill-dot"></span>English</li>
+          <li><span class="skill-dot"></span>Hindi</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+
+<!-- INTERESTS -->
+<hr class="divider">
+
+<section id="beyond">
+  <div class="beyond-inner">
+    <div>
+      <p class="section-label">Beyond Tech</p>
+    </div>
+    <div>
+      <h2 class="section-title">Outside the screen</h2>
+      <div class="beyond-grid">
+
+        <!-- Card 1 — edit emoji, title & description -->
+        <div class="beyond-card">
+          <span class="beyond-card-icon"></span>
+          <p class="beyond-card-title">Music Production</p>
+          <p class="beyond-card-desc">Recently started learning music production and enjoy experimenting with creating my own tracks and sounds.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="beyond-card">
+          <span class="beyond-card-icon"></span>
+          <p class="beyond-card-title">Gaming & Technology</p>
+          <p class="beyond-card-desc">Enjoy strategy, sandbox, and creative games that encourage problem-solving and experimentation.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="beyond-card">
+          <span class="beyond-card-icon"></span>
+          <p class="beyond-card-title">3D design</p>
+          <p class="beyond-card-desc">Like creating 3D models in Blender and exploring how ideas can be visualized digitally.</p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="beyond-card">
+          <span class="beyond-card-icon"></span>
+          <p class="beyond-card-title">Electronics & DIY</p>
+          <p class="beyond-card-desc">Always looking for new projects to build, whether it's software, electronics, or something in between.</p>
+        </div>
+
+        <!-- Add more cards by copying a block above -->
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="contact-eyebrow">Contact</p>
+  <h2 class="contact-title">Let's work <em>together</em></h2>
+  <p class="contact-sub">Whether it's a project, a question, or just saying hello — my inbox is open.</p>
+  <div class="contact-links">
+    <a href="mailto:groovy848@gmail.com" class="btn">Send an email</a>
+    <a href="https://linkedin.com" class="btn btn-ghost" target="_blank">LinkedIn</a>
+    <a href="https://github.com/Astitva23" class="btn btn-ghost" target="_blank">GitHub</a>
+  </div>
+</section>
+
+<footer>
+  <p class="footer-copy">© 2025 Astitva Kapre</p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
